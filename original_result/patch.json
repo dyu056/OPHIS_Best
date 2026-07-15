@@ -1,0 +1,6 @@
+{
+  "MATRIX_LR": "0.045",
+  "NGRAM_VE_BETA2_WARMDOWN": "0.99995",
+  "NGRAM_VE_BETAS": "(0.5, 0.9995)",
+  "NGRAM_VE_LR_SCALE": "1.2"
+}

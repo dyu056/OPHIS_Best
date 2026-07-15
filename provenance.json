@@ -1,0 +1,9 @@
+{
+  "downloaded_at": "2026-07-15T13:51:00+08:00",
+  "remote_source_dir": "/home/user/ai4ai/learning_hparam_sweep_gpu0_20260713/workdirs/20260713_gpu0_learning_hp_34_ngram_ve_beta2_warmdown_0p99995",
+  "remote_transfer_archive_sha256": "7cae801a2193d823914b41fafe617f70b2b39c63ce5191d0bf0a9f11f975bdd2",
+  "original_val_bpb": 0.9305633662309044,
+  "baseline_val_bpb": 0.9344166733521407,
+  "source_train_py_sha256": "b7a2880e242ce673c4fac9ad9df2fc3b058254f18dbf30ed9fc591e5ad05de8d",
+  "target_curve_sha256": "a6888ee59b84647f8158a57bb96903b5e1055f78b7a067d37daab6f26733acee"
+}

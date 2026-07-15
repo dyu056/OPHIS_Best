@@ -1,0 +1,26 @@
+{
+  "accepted_patch_after": {
+    "MATRIX_LR": "0.045",
+    "NGRAM_VE_BETA2_WARMDOWN": "0.99995",
+    "NGRAM_VE_BETAS": "(0.5, 0.9995)",
+    "NGRAM_VE_LR_SCALE": "1.2"
+  },
+  "best_bpb_after": 0.9305633662309044,
+  "candidate_patch": {
+    "NGRAM_VE_BETA2_WARMDOWN": "0.99995"
+  },
+  "delta_vs_baseline": 0.003853307121236327,
+  "delta_vs_known_best": 0.0006232469148941266,
+  "elapsed_sec": 1239.0999538898468,
+  "improved_greedy_best": true,
+  "patch": {
+    "MATRIX_LR": "0.045",
+    "NGRAM_VE_BETA2_WARMDOWN": "0.99995",
+    "NGRAM_VE_BETAS": "(0.5, 0.9995)",
+    "NGRAM_VE_LR_SCALE": "1.2"
+  },
+  "returncode": 0,
+  "run_id": "20260713_gpu0_learning_hp_34_ngram_ve_beta2_warmdown_0p99995",
+  "trial": "ngram_ve_beta2_warmdown_0p99995",
+  "val_bpb": 0.9305633662309044
+}

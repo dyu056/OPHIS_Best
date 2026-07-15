@@ -1,0 +1,13 @@
+[2026-07-15T14:12:24+08:00] two-run launcher started; waiting for a dedicated available device among 1-7
+[2026-07-15T15:23:51+08:00] selected device 7
+{
+  "val_bpb": 0.93193209586736,
+  "output_dir": "/home/user/ai4ai/single_observable_best_reproduction_20260715/rerun_1"
+}
+[2026-07-15T15:44:39+08:00] run 1 completed val_bpb=0.93193209586736
+{
+  "val_bpb": 0.9325372960023102,
+  "output_dir": "/home/user/ai4ai/single_observable_best_reproduction_20260715/rerun_2"
+}
+[2026-07-15T16:05:24+08:00] run 2 completed val_bpb=0.9325372960023102
+[2026-07-15T16:05:24+08:00] both reproductions completed

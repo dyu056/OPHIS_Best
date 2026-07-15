@@ -1,0 +1,27 @@
+{
+  "ssh": {
+    "host": "223.167.85.180",
+    "port": 50002,
+    "user": "user",
+    "helper": "/Users/danielyu/.codex/skills/h200server-skill/scripts/h200server_ssh.sh",
+    "batch_mode": true
+  },
+  "tunnel": {
+    "required": false,
+    "remote_socks_port": 18080
+  },
+  "remote": {
+    "work_dir": "/home/user/ai4ai/temp_autoresearch_sweep_coef0007_gpu1",
+    "results_base_dir": "/home/user/ai4ai/autoresearch_training_runs",
+    "cache_dir": "/home/user/.cache/autoresearch",
+    "conda_sh": "/home/user/codex_video_models/miniforge3/etc/profile.d/conda.sh",
+    "conda_env": "autoresearch",
+    "python_bin": "/home/user/ph/autoresearch/.venv/bin/python",
+    "train_command": "CUDA_VISIBLE_DEVICES=1 ATTN_ENTROPY_REG=0 TRAJECTORY_REG_OBSERVABLE=val.layer_2.attn_out.l1 TRAJECTORY_REG_CURVE_FILE=trajectory_reg_curve_val_layer_2_attn_out_l1.csv TRAJECTORY_REG_COEF=0.007 TRAJECTORY_REG_UNTIL_STEP=750 /home/user/ph/autoresearch/.venv/bin/python -u train.py",
+    "download_workers": 8,
+    "cleanup_temp": true
+  },
+  "local": {
+    "results_dir": "remote_training_runs"
+  }
+}

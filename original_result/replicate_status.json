@@ -1,0 +1,27 @@
+{
+  "base_src": "/home/user/ai4ai/learning_hparam_sweep_gpu0_20260713/workdirs/20260713_gpu0_learning_hp_34_ngram_ve_beta2_warmdown_0p99995",
+  "baseline_bpb": 0.9344166733521407,
+  "delta_vs_baseline": 0.0013559714128199563,
+  "delta_vs_historical_best": -0.0018740887935222439,
+  "delta_vs_sweep_best": -0.0024973357084163705,
+  "elapsed_sec": 1242.8812074661255,
+  "end_time": "2026-07-15T11:42:09+0800",
+  "historical_best_bpb": 0.9311866131457985,
+  "patch": {
+    "MATRIX_LR": "0.045",
+    "NGRAM_VE_BETA2_WARMDOWN": "0.99995",
+    "NGRAM_VE_BETAS": "(0.5, 0.9995)",
+    "NGRAM_VE_LR_SCALE": "1.2"
+  },
+  "purpose": "replicate final best learning hyperparameter sweep result",
+  "replicates_sweep_best_within_0p0005": false,
+  "replicates_sweep_best_within_0p001": false,
+  "returncode": 0,
+  "run_id": "20260715_gpu0_best_replicate3_val_l2_attn_out_l1_coef0007_until750",
+  "start_time": "2026-07-15T11:21:26+0800",
+  "sweep_best_bpb": 0.9305633662309044,
+  "trajectory_reg_coef": "0.007",
+  "trajectory_reg_observable": "val.layer_2.attn_out.l1",
+  "trajectory_reg_until_step": "750",
+  "val_bpb": 0.9330607019393208
+}
