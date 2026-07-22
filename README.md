@@ -1,67 +1,47 @@
-# Single-observable trajectory-regularization reproduction
+# OPHIS_Best
 
-Public source snapshot and rerun records for the best single-observable experiment
-found in the observable-regulation learning-hyperparameter sweep.
+Reproducible source snapshot for the best OPHIS single-observable trajectory-regularization result.
 
-## Configuration
+## Result
 
-- Observable: `val.layer_2.attn_out.l1`
-- Trajectory coefficient: `0.007`
-- Trajectory lead: `100` steps
-- Regularization cutoff: step `750`
-- Seed: `42`
-- Training steps: `2000`
-- `MATRIX_LR`: `0.045`
-- `NGRAM_VE_BETAS`: `(0.5, 0.9995)`
-- `NGRAM_VE_LR_SCALE`: `1.2`
-- `NGRAM_VE_BETA2_WARMDOWN`: `0.99995`
+Validation bits per byte (`val_bpb`; lower is better) was measured across repeated runs.
 
-## Results
+| Model | Mean `val_bpb` | Mean ± 2 sample SD |
+|---|---:|---:|
+| OPHIS RSI baseline | 0.9340967 | 0.9334899–0.9347035 |
+| OPHIS best result | **0.9318420** | 0.9301556–0.9335284 |
 
-| Run | `val_bpb` | Improvement vs baseline | Gap vs original best |
-|---|---:|---:|---:|
-| Original sweep best | **0.9305633662** | 0.0038533071 | — |
-| Rerun 1 | **0.9319320959** | 0.0024845775 | +0.0013687296 |
-| Rerun 2 | **0.9325372960** | 0.0018793773 | +0.0019739298 |
-| Rerun mean | **0.9322346959** | 0.0021819774 | +0.0016713297 |
+The best result reduces mean `val_bpb` by **0.0022547**, equivalent to **7.43×** the baseline sample standard deviation. The ranges above describe run-to-run dispersion; they are not confidence intervals.
 
-Baseline: `0.9344166734`.
+The experiment regularizes `val.layer_2.attn_out.l1` toward the supplied trajectory with coefficient `0.007`, a 100-step lead, and a cutoff at step 750. Each run uses seed 42 and trains for 2,000 steps.
 
-Both fresh reruns beat the baseline, but neither reproduced the original best
-within `0.001 val_bpb`. This supports a repeatable directional improvement, not
-stable reproduction of the exact best metric.
+## Reproduce the best result
 
-## Repository layout
-
-- `source/`: exact source snapshot, lockfile, target trajectory, and original summary.
-- `reproduce.py`: isolated one-command rerun launcher.
-- `original_result/`: original sweep and earlier replicate records.
-- `results/`: two fresh rerun summaries and logs.
-- `release/`: downloadable source and result archives.
-- `SHA256SUMS`: integrity manifest.
-
-## Run
-
-The experiment requires the same dataset/tokenizer mount and a CUDA-capable
-PyTorch environment used by the original autoresearch setup.
+Requirements: Linux, Python 3.10+, [`uv`](https://docs.astral.sh/uv/), and a CUDA-capable NVIDIA GPU. The recorded runs used about 69 GB of VRAM.
 
 ```bash
-/home/user/ph/autoresearch/.venv/bin/python reproduce.py \
-  --python /home/user/ph/autoresearch/.venv/bin/python \
+git clone https://github.com/dyu056/OPHIS_Best.git
+cd OPHIS_Best
+
+# Build the locked environment and prepare the dataset/tokenizer once.
+cd source
+uv sync --frozen
+uv run prepare.py
+cd ..
+
+# The launcher accepts CUDA device IDs 1–7.
+python reproduce.py \
+  --python "$PWD/source/.venv/bin/python" \
   --gpu 1 \
   --output-dir rerun
+
+cat rerun/summary.json
 ```
 
-The launcher accepts device identifiers `1` through `7` and writes `train.log`
-and `summary.json` under the selected output directory.
+The launcher copies the exact source snapshot and configuration into `rerun/work`, writes the full log to `rerun/train.log`, and writes the final metrics to `rerun/summary.json`. Repeat into separate output directories to measure run-to-run variation. CUDA training is not guaranteed to be bitwise deterministic, so compare the distribution rather than expecting an identical final decimal.
 
-## Integrity
-
-From the repository root:
+To verify the bundled artifacts before running:
 
 ```bash
 shasum -a 256 -c SHA256SUMS
 ```
-
-The source snapshot is preserved exactly; CUDA execution is not guaranteed to
-be bitwise deterministic even with a fixed seed.
